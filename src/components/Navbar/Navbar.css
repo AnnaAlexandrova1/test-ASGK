@@ -5,3 +5,20 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.outh-out-block{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+}
+
+.out-block-user {
+  position:absolute ;
+  right: 0;
+}
+
+.out-block-user span {
+  margin-right: 15px;
+}

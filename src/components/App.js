@@ -6,8 +6,8 @@ import './App.css';
 
 
 function App() {
-  const auth = useSelector(state => state.auth)
-  console.log(localStorage.getItem('auth_token'))
+  const auth = useSelector(state => state.auth.isAuth)
+  console.log(auth)
 
   return (
     <div className="app">
