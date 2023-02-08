@@ -11,14 +11,14 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  position: relative;
 }
 
 .out-block-user {
   position:absolute ;
-  right: 0;
+  right: 30px;
+  top: 20px;
 }
 
 .out-block-user span {
-  margin-right: 15px;
+  margin-right: 30px;
 }
