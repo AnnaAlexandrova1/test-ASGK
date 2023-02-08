@@ -2,6 +2,7 @@ import Navbar from './Navbar/Navbar';
 import Authorization from './Authorization/Authorization';
 import { useSelector } from 'react-redux';
 
+import Clients from './Clients/Clients';
 import './App.css';
 
 
@@ -12,6 +13,7 @@ function App() {
     <div className="app">
       <Navbar />
       {!isAuth && <Authorization />}
+      {isAuth && <Clients/>}
 
     </div>
   );
