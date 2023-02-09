@@ -1,17 +1,42 @@
+import "bootstrap-icons/font/bootstrap-icons.css";
 import { useSelector } from "react-redux";
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
 import { useMemo } from "react";
 
 
 export default function Table() {
-    const {meta, passes} = useSelector((state) => state.clients.clientList);
+  const { meta, passes } = useSelector((state) => state.clients.clientList);
+  
+  const showArrow = (col) => {
+    if (col) {
+         return <i className="bi bi-arrow-down-short"></i>
+    }
+    if (col===false) {
+      return <i className="bi bi-arrow-up-short"></i>
+    } if( col === undefined) {
+      return ''
+    }
+  }
 
   const columns = useMemo(
     () => [
       {Header: 'ФИО', accessor: 'fio'},
       {Header: 'ID Карты', accessor: 'user_id'},
       {Header: 'Макет карты', accessor: 'template'},
-      {Header: 'День рождения', accessor: 'birthday'},
+      {
+        Header: 'Создана', accessor: 'created_at',
+        Cell: ({ cell: { value } }) => {
+          const date  = new Date(value)
+          const year = date.getFullYear() 
+          const mounth = ('0' + date.getMonth()+1).slice(-2)
+          const day =('0' + date.getDay()).slice(-2)  
+              return (
+                <>
+                  {`${day}.${mounth}.${year}`}
+                </>
+              );
+            }
+      },
       {Header: 'Бонусы', accessor: 'bonus'}, 
       {Header: 'Скидка', accessor: 'discount'},
       {Header: 'Уровень лояльности', accessor: 'loyalty_level'},
@@ -28,7 +53,8 @@ export default function Table() {
     useTable({
       columns,
       data: passes,
-    });
+    },
+    useSortBy);
 
 
   return (
@@ -37,7 +63,14 @@ export default function Table() {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}
+              className={
+             column.isSorted
+      ? column.isSortedDesc
+        ? "sort-desc"
+        : "sort-asc"
+      : ""
+  }>{column.render("Header")}{showArrow(column.isSortedDesc)} </th>
             ))}
           </tr>
         ))}

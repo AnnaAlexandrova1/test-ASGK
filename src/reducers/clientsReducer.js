@@ -4,7 +4,10 @@ const GET_CLIENTS_ERROR = "GET_CLIENTS_ERROR"
 
 const initialState = {
     clientList: [],
-    loadingStatus: 'idle'
+    loadingStatus: 'idle',
+    search: '',
+    limit: 5,
+    offset: 0
 }
 
 export default function clientsReducer(state = initialState, action) {

@@ -5,7 +5,6 @@ import Table from "./Table"
 
 export default function ClientsList() {
     const clientList = useSelector(state => state.clients.clientList)
-    console.log(clientList)
 
     if (clientList.length < 1) {
         return 'список пуст'

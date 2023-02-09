@@ -1,9 +1,9 @@
 const link = "https://api.asgk-group.ru"
 const auth_token = localStorage.getItem("auth_token");
 
-export const fetchClients = (request) => (dispatch) => {
+export const fetchClients = (request, params) => (dispatch) => {
     dispatch(clientsFetching());
-    request(`${link}/v1/${localStorage.getItem('auth_token')}/passes?`)
+    request(`${link}/v1/${localStorage.getItem('auth_token')}/passes?${params}`)
     .then(data => dispatch(clientsFetched(data)))
     .catch(() => dispatch(clientsFetchingError()))
 }
