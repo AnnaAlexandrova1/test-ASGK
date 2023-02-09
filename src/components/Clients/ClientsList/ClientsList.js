@@ -14,7 +14,7 @@ export default function ClientsList() {
     return (
         <>
             <ClientsControl />
-            {/* <Table /> */}
+            <Table />
         </>
     )
 

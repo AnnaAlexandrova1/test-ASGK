@@ -13,7 +13,6 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 currentUser: action.payload,
-                isAuth: true
             }
         case GET_TOKEN: 
             return {

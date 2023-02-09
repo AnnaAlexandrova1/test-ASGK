@@ -3,7 +3,7 @@ const auth_token = localStorage.getItem("auth_token");
 
 export const fetchClients = (request) => (dispatch) => {
     dispatch(clientsFetching());
-    request(`${link}/v1/authorization`)
+    request(`${link}/v1/${localStorage.getItem('auth_token')}/passes?`)
     .then(data => dispatch(clientsFetched(data)))
     .catch(() => dispatch(clientsFetchingError()))
 }

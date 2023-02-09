@@ -11,10 +11,10 @@ export default function Clients() {
     const status = useSelector(state => state.clients.loadingStatus)
     const { request } = useHttp()
     const isAuth = useSelector(state => state.auth.isAuth)
-    
-const auth_token = localStorage.getItem("auth_token");
-console.log(auth_token)
 
+    useEffect(() => {
+        dispatch(fetchClients(request))
+    }, [])
 
     const drowStatus = () => {
         switch (status) {

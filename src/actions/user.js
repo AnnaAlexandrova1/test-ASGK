@@ -38,7 +38,6 @@ export const auth = () => {
                     }
                 }
             )
-            console.log(localStorage.getItem('auth_key'))
             dispatch(userGetToken())
             localStorage.setItem('auth_token', response.data.tokens[0].token)
         } catch (e) {
