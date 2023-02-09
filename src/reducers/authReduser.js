@@ -1,5 +1,6 @@
 const LOGIN = "LOGIN"
 const LOGOUT = "LOGOUT"
+const GET_TOKEN = 'GET_TOKEN'
 
 const initialState = {
     isAuth: false,
@@ -12,6 +13,11 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 currentUser: action.payload,
+                isAuth: true
+            }
+        case GET_TOKEN: 
+            return {
+                ...state,
                 isAuth: true
             }
         case LOGOUT:
@@ -27,5 +33,6 @@ export default function authReducer(state = initialState, action) {
 }
 
 
-export const userLogin = login => ({type: LOGIN, payload: login})
+export const userLogin = login => ({ type: LOGIN, payload: login })
+export const userGetToken =() => ({type: GET_TOKEN})
 export const logout = () => ({type: LOGOUT})

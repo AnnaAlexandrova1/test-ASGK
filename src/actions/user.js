@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { userLogin } from '../reducers/authReduser'
+import { userLogin, userGetToken } from '../reducers/authReduser'
 
+// ключ авторизации
 export const loginUser = (login, password) => {
    
     const headers = {
@@ -17,25 +18,32 @@ export const loginUser = (login, password) => {
                headers: headers
             })
             dispatch(userLogin(login))
-            localStorage.setItem('auth_token', response.data.auth_token)
+            localStorage.setItem('auth_key', response.data.auth_token)
         } catch (e) {
             alert(e.response.data.message)
         }
     }
 }
 
-
-export const auth =  () => {
+// токен для запросов
+export const auth = () => {
     return async dispatch => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/auth/auth`,
-                {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
+            const response = await axios.get(`https://api.asgk-group.ru/v1/authorization`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `${localStorage.getItem('auth_key')}`,
+
+                    }
+                }
             )
-            dispatch(userLogin(response.data.user))
-            localStorage.setItem('token', response.data.token)
+            console.log(localStorage.getItem('auth_key'))
+            dispatch(userGetToken())
+            localStorage.setItem('auth_token', response.data.tokens[0].token)
         } catch (e) {
             alert(e.response.data.message)
-            localStorage.removeItem('token')
+            localStorage.removeItem('auth_token')
         }
     }
 }

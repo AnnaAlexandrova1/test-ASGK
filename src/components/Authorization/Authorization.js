@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginUser } from "../../actions/user";
+import { auth } from "../../actions/user";
 import "./Authorization.css";
 
 export default function Authorization() {
@@ -8,13 +9,23 @@ export default function Authorization() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+
+  // при клике сразу получаем по ключу авторизации токен для дальнейших действий
   const handleClick = (e) => {
     e.preventDefault();
     if (login.length < 1 && password.length < 1) {
       alert("Подалуйста, введите логин и пароль");
       return;
     }
-    dispatch(loginUser(login, password));
+    async function geet() {
+      try {
+        await dispatch(loginUser(login, password))
+        await dispatch(auth())
+      } catch(error) {
+        alert(console.error())
+      }
+    }
+    geet()
   };
 
   return (

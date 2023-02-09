@@ -1,8 +1,9 @@
-const link = "https://sheetdb.io/api/v1/xf3tzwqsek2y8"
+const link = "https://api.asgk-group.ru"
+const auth_token = localStorage.getItem("auth_token");
 
 export const fetchClients = (request) => (dispatch) => {
     dispatch(clientsFetching());
-    request(link)
+    request(`${link}/v1/authorization`)
     .then(data => dispatch(clientsFetched(data)))
     .catch(() => dispatch(clientsFetchingError()))
 }

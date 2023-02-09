@@ -2,7 +2,8 @@ import { useSelector } from "react-redux";
 import { useTable } from "react-table";
 import { useMemo } from "react";
 
-export default function ClientsTable() {
+
+export default function Table() {
     const clientList = useSelector((state) => state.clients.clientList);
     
     // отрисуем все столбцы для таблицы
@@ -31,7 +32,7 @@ export default function ClientsTable() {
 
 
   return (
-    <table {...getTableProps()}>
+    <table {...getTableProps()} className="table table-striped">
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>

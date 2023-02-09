@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux"
 
 import ClientsControl from "./ClientsControl"
-import ClientsTable from "./ClientsTable"
+import Table from "./Table"
 
 export default function ClientsList() {
     const clientList = useSelector(state => state.clients.clientList)
+    console.log(clientList)
 
     if (clientList.length < 1) {
         return 'список пуст'
@@ -13,7 +14,7 @@ export default function ClientsList() {
     return (
         <>
             <ClientsControl />
-            <ClientsTable />
+            {/* <Table /> */}
         </>
     )
 

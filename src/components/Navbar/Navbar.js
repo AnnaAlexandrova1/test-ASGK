@@ -11,7 +11,7 @@ export default function Navbar() {
     <div className="wrap-header">
       <div className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="outh-out-block">
-          <h1 className="text-center">RFM-анализ</h1>
+          <h1 className="text-center">Список клиентов</h1>
         </div>
       </div>
       {isAuth && (
