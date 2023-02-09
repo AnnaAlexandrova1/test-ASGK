@@ -8,6 +8,15 @@ export default function Authorization() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (login.length < 1 && password.length < 1) {
+      alert("Подалуйста, введите логин и пароль");
+      return;
+    }
+    dispatch(loginUser(login, password));
+  };
+
   return (
     <div className="form-signin w-100 m-auto">
       <form>
@@ -40,12 +49,7 @@ export default function Authorization() {
         <button
           className="w-100 btn btn-lg btn-primary"
           type="submit"
-          onClick={(e) => {
-            e.preventDefault()
-            dispatch(loginUser(login, password))
-          }
-           }
-        >
+          onClick={(e) => handleClick(e)}>
           Войти
         </button>
       </form>

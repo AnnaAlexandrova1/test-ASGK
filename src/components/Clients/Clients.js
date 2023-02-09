@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchClients } from "../../actions/clients"
-import { useHttp } from "../hooks/http.hook"
 import ClientsList from "./ClientsList/ClientsList"
+import { useHttp } from '../../hooks/http.hook'
 
 
 export default function Clients() {
@@ -24,7 +24,6 @@ export default function Clients() {
                 return 'Ошибка'
         }
     }
-
 
     return (
         <div className="container">{drowStatus()}</div>

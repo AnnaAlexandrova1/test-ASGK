@@ -11,9 +11,11 @@
  3) Все возможные манипуляции с данным можно делать в блоке ClientsControl
  
 
-
-
 ## Инструменты
 React
 Bootstrap
 Redux
+Redix thunk
+react-table
+axios
+
