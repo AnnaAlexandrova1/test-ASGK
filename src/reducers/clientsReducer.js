@@ -12,7 +12,8 @@ const initialState = {
     loadintMoreStatus: 'idle',
     search: '',
     limit: 5,
-    offset: 0
+    offset: 0,
+    ended: false
 }
 
 export default function clientsReducer(state = initialState, action) {
@@ -44,6 +45,7 @@ export default function clientsReducer(state = initialState, action) {
             return {
                 ...state,
                 clientList: [...state.clientList, ...action.payload.passes],
+                ended: () => {return action.payload.passes < state.limit ? true : false},
                 loadintMoreStatus: 'idle'
             }
         case GET_MORE_CLIENTS_ERROR: {

@@ -10,7 +10,7 @@ import "./Table.css";
 
 export default function Table() {
   const { meta, passes } = useSelector((state) => state.clients.clientList);
-  const { clientList, loadingStatus, loadintMoreStatus, search, limit, offset } = useSelector(state => state.clients)
+  const { clientList, loadingStatus, loadintMoreStatus, search, limit, offset, ended } = useSelector(state => state.clients)
   const dispatch = useDispatch()
   const { request } = useHttp()
 
@@ -25,12 +25,15 @@ export default function Table() {
     if (loadintMoreStatus === 'error') {
        return <span>Ошибка ...</span>
     }
-     if (loadintMoreStatus === 'idle') {
+     if (loadintMoreStatus === 'idle' && !ended) {
        return (<button type="button" className="btn btn-secondary"
         onClick={() => handleShowMore()}>
         Показать еще
       </button>)
-     }
+    }
+    if (ended) {
+      return <span>Конец списка</span>
+    }
   }
 
   const showArrow = (col) => {
