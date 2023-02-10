@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // переметры запроса (отсутп, лимит (установила 50), поиск(если он есть))
 export const urlParams = (offset, limit, search) => {
   let params = new URLSearchParams();
@@ -14,7 +12,6 @@ export const urlParams = (offset, limit, search) => {
   }
 
   params.append("search", `${value}`);
-  console.log(`${params}`);
   return `${params}`;
 };
 

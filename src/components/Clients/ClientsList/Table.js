@@ -15,8 +15,8 @@ import ModalWin from "../../ModalWin/ModalWin";
 import "./Table.css";
 
 export default function Table() {
-  const [active, setActive] = useState(false)
-  const {request} = useHttp()
+  const [active, setActive] = useState(false);
+  const { request } = useHttp();
   const {
     clientList,
     loadingStatus,
@@ -33,43 +33,49 @@ export default function Table() {
   };
 
   const closeActive = () => {
-       setActive(false)
-  }
+    setActive(false);
+  };
   const handleSearch = (e) => {
-   // console.log(e.target.className)
+    // console.log(e.target.className)
     if (e.keyCode === 13) {
-      dispatch(setSearch({ param: e.target.className, value: e.target.value }))
+      dispatch(setSearch({ param: e.target.className, value: e.target.value }));
     }
-  }
+  };
 
   const tHeads = [
-  { Header: "ФИО", accessor: "fio" },
-  { Header: "ID Карты", accessor: "user_id" },
-  { Header: "Макет карты", accessor: "template" },
-  {
-    Header: "Создана",
-    accessor: "created_at",
-    Cell: ({ cell: { value } }) => {
-      const date = new Date(value);
-      const year = date.getFullYear();
-      const mounth = ("0" + date.getMonth() + 1).slice(-2);
-      const day = ("0" + date.getDay()).slice(-2);
-      return <>{`${day}.${mounth}.${year}`}</>;
+    { Header: "ФИО", accessor: "fio" },
+    { Header: "ID Карты", accessor: "user_id" },
+    { Header: "Макет карты", accessor: "template" },
+    {
+      Header: "Создана",
+      accessor: "created_at",
+      Cell: ({ cell: { value } }) => {
+        const date = new Date(value);
+        const year = date.getFullYear();
+        const mounth = ("0" + date.getMonth() + 1).slice(-2);
+        const day = ("0" + date.getDay()).slice(-2);
+        return <>{`${day}.${mounth}.${year}`}</>;
+      },
     },
-  },
-  { Header: "Бонусы", accessor: "bonus" },
-  { Header: "Скидка", accessor: "discount" },
-  { Header: "Уровень лояльности", accessor: "loyalty_level" },
-  { Header: "Сумма покупок за период", accessor: "summ" },
-  { Header: "Общая сумма покупок", accessor: "summ_all" },
-  { Header: "Последнее посещение", accessor: "date_last" },
-  { Header: "Визиты за период", accessor: "visits" },
-  { Header: "Всего визитов", accessor: "visits_all" },
-  {
-    Header: "Отправить PUSH",
-      Cell: <i className="bi bi-send" style={{ margin: "10px" }} onClick={() => setActive(true)}></i>
-  },
-];
+    { Header: "Бонусы", accessor: "bonus" },
+    { Header: "Скидка", accessor: "discount" },
+    { Header: "Уровень лояльности", accessor: "loyalty_level" },
+    { Header: "Сумма покупок за период", accessor: "summ" },
+    { Header: "Общая сумма покупок", accessor: "summ_all" },
+    { Header: "Последнее посещение", accessor: "date_last" },
+    { Header: "Визиты за период", accessor: "visits" },
+    { Header: "Всего визитов", accessor: "visits_all" },
+    {
+      Header: "Отправить PUSH",
+      Cell: (
+        <i
+          className="bi bi-send"
+          style={{ margin: "10px" }}
+          onClick={() => setActive(true)}
+        ></i>
+      ),
+    },
+  ];
 
   const drowStatus = () => {
     if (loadintMoreStatus === "loading") {
@@ -144,14 +150,24 @@ export default function Table() {
 
         <tbody {...getTableBodyProps()}>
           <tr>
-            {tHeads.map((item,i) => {
-              return <td key={i}>
-                <input type="text" className={item.accessor} placeholder="поиск" aria-label="поиск"
-                  aria-describedby="basic-addon2" style={{ width: "90%" }}
-                  onKeyDown={(e) => {handleSearch(e)}} />
-              </td>
+            {tHeads.map((item, i) => {
+              return (
+                <td key={i}>
+                  <input
+                    type="text"
+                    className={item.accessor}
+                    placeholder="поиск"
+                    aria-label="поиск"
+                    aria-describedby="basic-addon2"
+                    style={{ width: "90%" }}
+                    onKeyDown={(e) => {
+                      handleSearch(e);
+                    }}
+                  />
+                </td>
+              );
             })}
-              </tr>
+          </tr>
           {rows.map((row, i) => {
             prepareRow(row);
             return (
