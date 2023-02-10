@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchClients, fetchMoreClients } from "../../actions/clients"
 import ClientsList from "./ClientsList/ClientsList"
 import { useHttp } from '../../hooks/http.hook'
-import { auth } from "../../actions/user"
 import { urlParams } from "../../datatransforming/dataTRansform"
 import { specialCharMap } from "@testing-library/user-event/dist/keyboard"
 
@@ -47,6 +46,8 @@ export default function Clients() {
     }
 
     return (
+        <>
         <div className="container">{drowStatus()}</div>
+            </>
     )
 }

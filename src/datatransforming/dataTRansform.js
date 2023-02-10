@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // переметры запроса (отсутп, лимит (установила 50), поиск(если он есть))
 export const urlParams = (offset, limit, search) => {
   let params = new URLSearchParams();
@@ -42,7 +44,7 @@ export const tHeads = [
   { Header: "Всего визитов", accessor: "visits_all" },
   {
     Header: "Отправить PUSH",
-    Cell: <i className="bi bi-send" style={{ margin: "10px" }}></i>,
+      Cell: <i className="bi bi-send" style={{ margin: "10px" }}></i>
   },
 ];
 

@@ -1,11 +1,11 @@
 import Navbar from './Navbar/Navbar';
 import Authorization from './Authorization/Authorization';
+import { Routes, Route } from 'react-router-dom';
 import { auth } from '../actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Clients from './Clients/Clients';
 import './App.css';
-import { useEffect } from 'react';
 
 
 function App() {
@@ -17,7 +17,6 @@ function App() {
       <Navbar />
       {!isAuth && <Authorization />}
       {isAuth && <Clients/>}
-
     </div>
   );
 }
