@@ -5,6 +5,7 @@ import ClientsList from "./ClientsList/ClientsList"
 import { useHttp } from '../../hooks/http.hook'
 import { auth } from "../../actions/user"
 import { urlParams } from "../../datatransforming/dataTRansform"
+import { specialCharMap } from "@testing-library/user-event/dist/keyboard"
 
 
 export default function Clients() {
@@ -14,12 +15,23 @@ export default function Clients() {
     const isAuth = useSelector(state => state.auth.isAuth)
     
     useEffect(() => {
-        dispatch(fetchClients(request, urlParams(offset, limit)))
+        dispatch(fetchClients(request, urlParams(offset, limit, search)))
     }, [])
+
+    useEffect(() => {
+         dispatch(fetchClients(request, urlParams(offset, limit, search)))
+        // for (let key in search) {
+        //     if (search[key].length > 0) {
+        //     console.log(search[key])
+        //   dispatch(fetchClients(request, urlParams(offset, limit, search)))
+        //     }
+           // dispatch(fetchClients(request, urlParams(offset, limit, search)))
+//   }
+    }, [search])
 
   useEffect(() => {
     if(offset !== 0){
-      dispatch(fetchMoreClients(request, urlParams(offset, limit)))
+      dispatch(fetchMoreClients(request, urlParams(offset, limit, search)))
       }
   }, [offset])
 

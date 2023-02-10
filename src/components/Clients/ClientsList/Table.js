@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTable, useSortBy } from "react-table";
 import { useEffect, useMemo } from "react";
 import { showMore } from "../../../reducers/clientsReducer";
-import { fetchMoreClients } from "../../../actions/clients";
+import { setSearch } from "../../../reducers/clientsReducer";
 import {
   urlParams,
   tHeads,
   tHeadsModify,
 } from "../../../datatransforming/dataTRansform";
+import { fetchClients } from "../../../actions/clients";
 import { useHttp } from "../../../hooks/http.hook";
 import "./Table.css";
 
 export default function Table() {
+  const {request} = useHttp()
   const {
     clientList,
     loadingStatus,
@@ -27,6 +29,15 @@ export default function Table() {
   const handleShowMore = () => {
     dispatch(showMore());
   };
+
+  const handleSearch = (e) => {
+   // console.log(e.target.className)
+    if (e.keyCode === 13) {
+      dispatch(setSearch({ param: e.target.className, value: e.target.value }))
+    }
+  }
+
+ console.log(search)
 
   const drowStatus = () => {
     if (loadintMoreStatus === "loading") {
@@ -101,9 +112,11 @@ export default function Table() {
 
         <tbody {...getTableBodyProps()}>
           <tr>
-            {tHeads.map(item => {
-              return <td>
-                <input type="text" class="поиск" placeholder="поиск" aria-label="поиск" aria-describedby="basic-addon2" style={{width: "90%"}}></input>
+            {tHeads.map((item,i) => {
+              return <td key={i}>
+                <input type="text" className={item.accessor} placeholder="поиск" aria-label="поиск"
+                  aria-describedby="basic-addon2" style={{ width: "90%" }}
+                  onKeyDown={(e) => {handleSearch(e)}} />
               </td>
             })}
               </tr>

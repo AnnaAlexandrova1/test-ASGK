@@ -1,8 +1,18 @@
 // переметры запроса (отсутп, лимит (установила 50), поиск(если он есть))
-export const urlParams = (offset, limit) => {
+export const urlParams = (offset, limit, search) => {
   let params = new URLSearchParams();
+  let value = "";
   params.append("offset", offset);
   params.append("limit", limit);
+  for (let key in search) {
+    if (search[key].length > 0) {
+      // value.append(key, search[key].toString())
+      value += `${key}=${search[key]}`;
+    }
+  }
+
+  params.append("search", `${value}`);
+  console.log(`${params}`);
   return `${params}`;
 };
 

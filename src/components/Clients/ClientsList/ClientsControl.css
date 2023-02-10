@@ -1,0 +1,15 @@
+.header-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.header-control span {
+    margin-right: 30px;
+}
+
+.control-search {
+    color:black;
+    font-weight: 700;
+    text-decoration: underline;
+}
