@@ -1,5 +1,6 @@
 # Тестовое задание   
-[ Реализация GitHub-Pages](https://annaalexandrova1.github.io/test-ASGK/)
+[ Реализация GitHub-Pages](https://annaalexandrova1.github.io/test-ASGK/)  
+Логин / пароль любые символы
 
 ### Задача:
 1. **Сделать страницу входа**  
